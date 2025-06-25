@@ -1,6 +1,15 @@
 FROM crystallang/crystal:1.16.3-alpine AS builder
 
-RUN apk add --no-cache sqlite-static yaml-static
+RUN apk add --no-cache \
+    crystal \
+    shards \
+    build-base \
+    libxml2-dev \
+    yaml-static \
+    sqlite-static \
+    git \
+    dos2unix && \
+    find . -type f -exec dos2unix {} +
 
 ARG release
 

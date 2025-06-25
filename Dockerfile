@@ -1,16 +1,7 @@
 FROM crystallang/crystal:1.16.3-alpine AS builder
 
-RUN apk add --no-cache \
-    crystal \
-    shards \
-    build-base \
-    libxml2-dev \
-    yaml-static \
-    sqlite-static \
-    git \
-    dos2unix && \
-    find . -type f -exec dos2unix {} +
-
+RUN apk add --no-cache sqlite-static yaml-static
+# we dont need dos2unix becuase we run on linux
 ARG release
 
 WORKDIR /invidious

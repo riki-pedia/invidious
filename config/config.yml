@@ -1,0 +1,17 @@
+db:
+  dbname: railway
+  user: postgres
+  password: FNQJYcurgOAKtsffsgJBhHMEMhDXYezH
+  host: postgres.railway.internal
+  port: 5432
+
+check_tables: true
+statistics_enabled: true
+registration_enabled: false
+
+hmac_key: "Ufaechei2ieteigh"
+
+signature_server: http://inv-sig-helper:12999
+
+visitor_data: "Cgt6QXpBbVB4TTJnRSj79vHCBjIKCgJVUxIEGgAgNg%3D%3D"
+po_token: "MnS2-oQ-lrXkXbbCBGNNWVPRrFEhGDyhmv1075QBC8BX0E7bQBoQTYKFQtU8EOejGC55AnSTSw2K9tg_ga8L_kTMbtvwpqrnQjtFV5hsTvkcLcKy3JEy3RjxFuiAWeEWLCsYeTH4zB5cDzZWiEYgKr1DNWop-g=="

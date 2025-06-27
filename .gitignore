@@ -6,4 +6,5 @@
 /.vscode/
 /invidious
 /sentry
-/config/config.yml
+# hardcoded config file, so we don't ignore it 
+#/config/config.yml

@@ -1,7 +1,7 @@
 FROM crystallang/crystal:1.16.3-alpine AS builder
 
 RUN apk add --no-cache sqlite-static yaml-static
-# we dont need dos2unix becuase we run on linux
+# we dont need dos2unix becuase i already converted the files
 ARG release
 
 WORKDIR /invidious
@@ -34,16 +34,21 @@ RUN  if [[ "${release}" == 1 ]] ; then \
 
 FROM alpine:3.21
 RUN apk add --no-cache rsvg-convert ttf-opensans tini tzdata
+
 WORKDIR /invidious
+
+# Create invidious user
 RUN addgroup -g 1000 -S invidious && \
     adduser -u 1000 -S invidious -G invidious
-COPY --chown=invidious ./config/config.* ./config/
-RUN mv -n config/config.example.yml config/config.yml
-RUN sed -i 's/host: \(127.0.0.1\|localhost\)/host: invidious-db/' config/config.yml
+
+# Copy static assets
+COPY ./config/config.yml ./config/config.yml
 COPY ./config/sql/ ./config/sql/
 COPY ./locales/ ./locales/
 COPY --from=builder /invidious/assets ./assets/
 COPY --from=builder /invidious/invidious .
+
+# Adjust permissions
 RUN chmod o+rX -R ./assets ./config ./locales
 
 EXPOSE 3000
